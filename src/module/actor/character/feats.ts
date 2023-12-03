@@ -101,6 +101,7 @@ class CharacterFeats<TActor extends CharacterPF2e> extends Collection<FeatGroup<
             label: "PF2E.FeatSkillHeader",
             supported: ["skill"],
             slots: R.compact([backgroundSkillFeats, classFeatSlots?.skill].flat()),
+            featFilter: ["skill-proficient"],
         });
 
         this.createGroup({

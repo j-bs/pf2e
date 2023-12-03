@@ -1259,8 +1259,10 @@ class CharacterSheetPF2e<TActor extends CharacterPF2e> extends CreatureSheetPF2e
         level.values.max = Math.min(maxLevel, level.values.upperLimit);
         level.isExpanded = level.values.max !== level.values.upperLimit;
 
-        const { category } = filter.checkboxes;
+        const { category, skills } = filter.checkboxes;
         const { traits } = filter.multiselects;
+
+        const skillProfs = Object.values(this.actor.system.skills).filter((s) => s.rank > 0);
 
         for (const filterCode of checkboxesFilterCodes) {
             const [filterType, ...rest] = filterCode.split("-");
@@ -1280,6 +1282,15 @@ class CharacterSheetPF2e<TActor extends CharacterPF2e> extends CreatureSheetPF2e
                 }
             } else if (filterType === "conjunction" && (value === "and" || value === "or")) {
                 filter.multiselects.traits.conjunction = value;
+            } else if (filterType === "skill" && value === "proficient") {
+                skills.isExpanded = true;
+
+                for (const prof of skillProfs) {
+                    if (prof?.slug in skills.options) {
+                        skills.options[prof.slug].selected = true;
+                        skills.selected.push(prof.slug);
+                    }
+                }
             }
         }
 
