@@ -55,7 +55,11 @@
                 {{#each checkbox.options as |option type|}}
                     <label>
                         <dt><input type="checkbox" name="{{type}}" {{checked option.selected}} /></dt>
-                        <dd>{{localize option.label}}</dd>
+                        <dd>{{localize option.label}}
+                            {{#if (eq name "skills")}}
+                                {{> 'systems/pf2e/templates/compendium-browser/partials/skills-filter.hbs' type=type visible=option.selected}}
+                            {{/if}}
+                        </dd>
                     </label>
                 {{/each}}
             </dl>

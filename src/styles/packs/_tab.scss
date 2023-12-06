@@ -60,7 +60,45 @@
         }
 
         dd {
+            display: inline-flex;
             width: 82%;
+
+            .skill-prof-filter {
+                display: inline-flex;
+                flex-wrap: nowrap;
+                gap: 0 0.75rem;
+                justify-content: flex-end;
+                margin-left: auto;
+
+                [data-rank="1"] {
+                    color: var(--color-proficiency-trained);
+
+                    input[type="radio"] {
+                        accent-color: var(--color-proficiency-trained);
+                    }
+                }
+                [data-rank="2"] {
+                    color: var(--color-proficiency-expert);
+
+                    input[type="radio"] {
+                        accent-color: var(--color-proficiency-expert);
+                    }
+                }
+                [data-rank="3"] {
+                    color: var(--color-proficiency-master);
+
+                    input[type="radio"] {
+                        accent-color: var(--color-proficiency-master);
+                    }
+                }
+                [data-rank="4"] {
+                    color: var(--color-proficiency-legendary);
+
+                    input[type="radio"] {
+                        accent-color: var(--color-proficiency-legendary);
+                    }
+                }
+            }
         }
 
         .filter-conjunction {

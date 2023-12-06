@@ -137,6 +137,7 @@ export function registerTemplates(): void {
         "systems/pf2e/templates/compendium-browser/settings/pack-settings.hbs",
         "systems/pf2e/templates/compendium-browser/settings/source-settings.hbs",
         "systems/pf2e/templates/compendium-browser/filters.hbs",
+        "systems/pf2e/templates/compendium-browser/partials/skills-filter.hbs",
 
         // Action Partial
         "systems/pf2e/templates/chat/action/header.hbs",
