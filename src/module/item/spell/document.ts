@@ -56,7 +56,7 @@ import {
     SpellSystemData,
     SpellSystemSource,
 } from "./data.ts";
-import { createDescriptionPrepend, createSpellRankLabel, getPassiveDefenseLabel } from "./helpers.ts";
+import { createDescriptionPrepend, createSpellRankLabel, getSpellDefenseLabel } from "./helpers.ts";
 import { SpellOverlayCollection } from "./overlay.ts";
 import { EffectAreaSize, MagicTradition, SpellTrait } from "./types.ts";
 
@@ -135,20 +135,7 @@ class SpellPF2e<TParent extends ActorPF2e | null = ActorPF2e | null> extends Ite
 
     get defense(): { slug: string; label: string } | null {
         const defense = this.system.defense;
-        if (defense?.passive) {
-            const label = getPassiveDefenseLabel(defense.passive.statistic);
-            if (label) {
-                return { slug: defense.passive.statistic, label: game.i18n.localize(label) };
-            }
-        } else if (defense?.save) {
-            const saveLabel = game.i18n.localize(CONFIG.PF2E.saves[defense.save.statistic]);
-            const label = defense.save.basic
-                ? game.i18n.format("PF2E.Item.Spell.Defense.BasicDefense", { save: saveLabel })
-                : saveLabel;
-            return { slug: defense.save.statistic, label };
-        }
-
-        return null;
+        return getSpellDefenseLabel(defense);
     }
 
     get spellcasting(): BaseSpellcastingEntry<NonNullable<TParent>> | null {

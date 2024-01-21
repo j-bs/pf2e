@@ -1,5 +1,5 @@
 import { localizer } from "@util";
-import type { SpellPF2e } from "./index.ts";
+import type { SpellDefenseData, SpellPF2e } from "./index.ts";
 
 function createSpellRankLabel(spell: SpellPF2e, castRank?: number): string {
     const typeLabel = spell.isCantrip
@@ -54,4 +54,21 @@ function getPassiveDefenseLabel(statistic: string): string | null {
     }
 }
 
-export { createDescriptionPrepend, createSpellRankLabel, getPassiveDefenseLabel };
+function getSpellDefenseLabel(defense: SpellDefenseData | null): { slug: string; label: string } | null {
+    if (defense?.passive) {
+        const label = getPassiveDefenseLabel(defense.passive.statistic);
+        if (label) {
+            return { slug: defense.passive.statistic, label: game.i18n.localize(label) };
+        }
+    } else if (defense?.save) {
+        const saveLabel = game.i18n.localize(CONFIG.PF2E.saves[defense.save.statistic]);
+        const label = defense.save.basic
+            ? game.i18n.format("PF2E.Item.Spell.Defense.BasicDefense", { save: saveLabel })
+            : saveLabel;
+        return { slug: defense.save.statistic, label };
+    }
+
+    return null;
+}
+
+export { createDescriptionPrepend, createSpellRankLabel, getPassiveDefenseLabel, getSpellDefenseLabel };

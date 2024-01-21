@@ -132,6 +132,7 @@ export type {
     SpellArea,
     SpellDamage,
     SpellDamageSource,
+    SpellDefenseData,
     SpellHeightenLayer,
     SpellHeighteningInterval,
     SpellOverlay,

@@ -9,6 +9,25 @@
         {{#if spell.system.target.value}}<strong>{{localize "PF2E.SpellTargetLabel"}}</strong> {{spell.system.target.value}}{{/if}}
     </p>
 {{/if}}
-{{#if duration}}
-    <p><strong>{{localize "PF2E.Time.Duration"}}</strong> {{duration}}</p>
+{{#if (or spell.defense duration)}}
+    <p>
+        {{#if spell.defense}}
+            <strong>{{localize "PF2E.Item.Spell.Defense.Label"}}</strong>
+            {{spell.defense.label}}
+        {{/if}}
+        {{#if duration}}
+            <strong>{{localize "PF2E.Time.Duration"}}</strong>
+            {{duration}}
+        {{/if}}
+    </p>
 {{/if}}
+{{!-- {{#if spell.defense}}
+    <p>
+        <strong>{{localize "PF2E.Item.Spell.Defense.Label"}}</strong> {{spell.defense.label}}
+    </p>
+{{/if}}
+{{#if duration}}
+    <p>
+        <strong>{{localize "PF2E.Time.Duration"}}</strong> {{duration}}
+    </p>
+{{/if}} --}}

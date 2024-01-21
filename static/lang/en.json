@@ -2462,7 +2462,8 @@
                 "Defense": {
                     "BasicDefense": "basic {save}",
                     "BasicSave": "Basic",
-                    "Label": "Defense"
+                    "Label": "Defense",
+                    "MultiDefense": "{passive} and {save}"
                 },
                 "LevelN": "Spell {level}",
                 "MeasuredTemplate": {
